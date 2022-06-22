@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filtro COVID-19</title>
+    <link href="./assets/css/covid.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img
+              src="/assets/img/SALUD.png"
+              alt=""
+              class="d-inline-block align-text-top"
+            />
+          </a>
+        </div>
+      </nav>
+    </header>
+    <main class="flex-shrink-0">
+      <form >
+      <!-- <div class="container">
+          <h1 class="mt-5">Sticky footer</h1>
+          <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.</p>
+          <p>Use <a href="/docs/5.0/examples/sticky-footer-navbar/">the sticky footer with a fixed navbar</a> if need be, too.</p>
+        </div> -->
+     
+      <div class="row g-3 container-fluid">
+        <fieldset>
+          <legend>Datos</legend>
+        <div class="col-md-12">
+          <label for="entradaFechaActual" class="form-label">Fecha:</label>
+          <input type="date" class="form-control" id="entradaFechaActual" />
+        </div>
+        <div class="col-md-12">
+          <label for="entradaApellidoPaterno" class="form-label"
+            >Apellido paterno:</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="entradaApellidoPaterno"
+            placeholder="Apellido paterno"
+          />
+        </div>
+        <div class="col-12">
+          <label for="entradaApellidoMaterno" class="form-label"
+            >Apellido materno:</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="entradaApellidoMaterno"
+            placeholder="Apellido materno"
+          />
+        </div>
+        <div class="col-12">
+          <label for="entradaNombre" class="form-label">Nombre:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="entradaNombre"
+            placeholder="Nombre"
+          />
+        </div>
+        <div class="col-md-12">
+          <label for="entradaFechaNacimiento" class="form-label"
+            >Fecha de nacimiento:</label
+          >
+          <input type="date" class="form-control" id="entradaFechaNacimiento" />
+        </div>
+        <div class="col-md-12">
+          <label for="entradaEdad" class="form-label">Edad:</label>
+          <input type="number" class="form-control" id="entradaEdad" />
+        </div>
+        <div class="col-md-12">
+          <label for="entradaCURP" class="form-label">CURP:</label>
+          <input type="text" class="form-control" id="entradaCURP" />
+        </div>
+        <div class="col-md-12">
+          <label class="form-check-label d-block">Sexo:</label>
+          <div class="form-check-inline mt-1">
+            <input
+              type="radio"
+              class="btn-check"
+              name="opcionesSexo"
+              id="sexoHombre"
+              autocomplete="off"
+            />
+            <label class="btn btn-outline-success" for="sexoHombre"
+              >Hombre</label
+            >
+            <input
+              type="radio"
+              class="btn-check"
+              name="opcionesSexo"
+              id="sexoMujer"
+              autocomplete="off"
+              onchange="javascript:showContent()"
+            />
+            <label class="btn btn-outline-success" for="sexoMujer">Mujer</label>
+          </div>
+        </div>
+        <!-- Sección de la respuesta mujer  -->
+        <div class="col-md-12 oculto" id="respuestaMujer">
+          <label class="form-check-label d-block"
+            >¿Te encuentras embarazada?</label
+          >
+          <div class="form-check-inline mt-1">
+            <input
+              type="radio"
+              class="btn-check"
+              name="opcionesEmbarazo"
+              id="embarazoSi"
+              autocomplete="off"
+              onchange="javascript:showContent()"
+            />
+            <label class="btn btn-outline-success" for="embarazoSi" >Si</label>
+            <input
+              type="radio"
+              class="btn-check"
+              name="opcionsEmbarazo"
+              id="embarazoNo"
+              autocomplete="off"
+              checked
+            />
+            <label class="btn btn-outline-success" for="embarazoNo">No</label>
+          </div>
+        </div>
+        <!-- Fin de la sección de la respuesta mujer  -->
+        <!-- Sección de la respuesta si de embarazo  -->
+        <div class="col-md-12 oculto" id="respuestaEmbarazo">
+          <div class="col-md-12">
+            <label for="entradaTiempoEmbarazo" class="form-label"
+              >Meses de embarazo:</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="entradaTiempoEmbarazo"
+              min="1"
+              max="9"
+            />
+          </div>
+          <div class="col-md-12 oculto" id="respuestaPeriodo">
+            <label class="form-check-label d-block"
+              >¿Se encuentra en periodo de puerperio?</label
+            >
+            <div class="form-check-inline col-12 mt-1">
+              <input
+                type="radio"
+                class="btn-check"
+                name="opcionesPeriodoPuerperio"
+                id="periodoPuerperioSi"
+                autocomplete="off"
+                onchange="javascript:showContent()"
+              />
+              <label class="btn btn-outline-success" for="periodoPuerperioSi"
+                >Si</label
+              >
+              <input
+                type="radio"
+                class="btn-check"
+                name="opcionesPeriodoPuerperio"
+                id="periodoPuerperioNo"
+                autocomplete="off"
+                checked
+              />
+              <label class="btn btn-outline-success" for="periodoPuerperioNo"
+                >No</label
+              >
+            </div>
+          </div>
+          <div class="col-md-12 oculto" id="respuestaPeriodoPuerperio">
+            <label for="entradaTiempoPP" class="form-label"
+              >Dias de puerperio:</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="entradaTiempoPP"
+              min="1"
+            />
+          </div>
+        </div>
+        <!-- Fin de la sección de la respuesta si de embarazo  -->
+        <div class="col-md-12">
+          <label class="form-check-label d-block">Nacionalidad:</label>
+          <div class="form-check-inline col-12 mt-1">
+            <input
+              type="radio"
+              class="btn-check"
+              name="opcionesNacionalidad"
+              id="nacionalidadMexicana"
+              autocomplete="off"
+            />
+            <label class="btn btn-outline-success" for="nacionalidadMexicana"
+              >Mexicana</label
+            >
+            <input
+              type="radio"
+              class="btn-check"
+              name="opcionesNacionalidad"
+              id="nacionalidadExtranjera"
+              autocomplete="off"
+              onchange="javascript:showContent()"
+            />
+            <label class="btn btn-outline-success" for="nacionalidadExtranjera"
+              >Extanjera</label
+            >
+          </div>
+        </div>
+        <!-- Sección de la respuesta de nacionalidad extranjera  -->
+        <div class="col-md-12 oculto" id="respuestaNacionalidad">
+          <div class="col-md-12">
+            <label class="form-check-label d-block">¿Es migrante?</label>
+            <div class="form-check-inline col-12 mt-1">
+              <input
+                type="radio"
+                class="btn-check"
+                name="opcionesMigrante"
+                id="migranteSi"
+                autocomplete="off"
+                onchange="javascript:showContent()"
+              />
+              <label class="btn btn-outline-success" for="migranteSi">Si</label>
+              <input
+                type="radio"
+                class="btn-check"
+                name="opcionesMigrante"
+                id="migranteNo"
+                autocomplete="off"
+                checked
+              />
+              <label class="btn btn-outline-success" for="migranteNo">No</label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 oculto"  id="respuestaMigrante">
+            <label for="entradaNacionalidad" class="form-label"
+              >Nacionalidad:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="entradaNacionalidad"
+              placeholder="Nacionalidad"
+            />
+        </div>
+        <!-- Fin de la sección de la respuesta de nacionalidad extranjera -->
+        <div class="col-md-12 oculto" id="respuestaNacionalidadFecha">
+          <label class="form-check-label d-block"
+            >¿Ha salido fuera del país?</label
+          >
+          <div class="form-check-inline col-12 mt-1">
+            <input
+              type="radio"
+              class="btn-check"
+              name="opcionesPaisesVisitados"
+              id="paisesVisitadosSi"
+              autocomplete="off"
+              onchange="javascript:showContent()"
+            />
+            <label class="btn btn-outline-success" for="paisesVisitadosSi"
+              >Si</label
+            >
+            <input
+              type="radio"
+              class="btn-check"
+              name="opcionesPaisesVisitados"
+              id="paisesVisitadosNo"
+              autocomplete="off"
+              checked
+            />
+            <label class="btn btn-outline-success" for="paisesVisitadosNo"
+              >No</label
+            >
+          </div>
+        </div>
+        <!-- Seción de respuesta si a salido fuera del pais -->
+        <div class="col-md-12 oculto" id="repuestaPaisesVisitados">
+          <label for="entradaPaisesVisitados" class="form-label"
+            >Paises visitados en los ultimos tres meses:</label
+          >
+          <input
+            type="text"
+            class="form-control mt-1"
+            id="entradaPaisesVisitados1"
+          />
+          <input
+            type="text"
+            class="form-control mt-1"
+            id="entradaPaisesVisitados2"
+          />
+          <input
+            type="text"
+            class="form-control mt-1"
+            id="entradaPaisesVisitados3"
+          />
+        </div>
+        <div class="col-md-12 oculto" id="respuestaIngresoPais">
+          <label for="entradaFechaIngreso" class="form-label"
+            >Fecha de ingreso a México:</label
+          >
+          <input type="date" class="form-control" id="entradaFechaIngreso" />
+        </div>
+        <!-- Fin de la seccion de respuesta si a salido fuera del pais-->
+        <div class="col-md-12">
+          <label for="entradaPaisNacimiento" class="form-label"
+            >País de nacimiento:</label
+          >
+          <input type="text" class="form-control" id="entradaPaisNacimiento" />
+        </div>
+        <div class="col-md-12">
+          <label for="entradaEstadoNacimiento" class="form-label"
+            >Entidad federativa de nacimiento:</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="entradaEstadoNacimiento"
+          />
+        </div>
+        <div class="col-md-12">
+          <label for="entradaEstadoResidencia" class="form-label"
+            >Estado de residencia::</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="entradaEstadoResidencia"
+          />
+        </div>
+        <div class="col-md-12">
+          <label for="entradaMunicipioResidencia" class="form-label"
+            >Municipio de residencia:</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="entradaMunicipioResidencia"
+          />
+        </div>
+        <div class="col-md-12">
+          <label for="entradaLocalidad" class="form-label">Localidad:</label>
+          <input type="text" class="form-control" id="entradaLocalidad" />
+        </div>
+        <div class="col-md-12">
+          <label for="entradaCalle" class="form-label">Calle:</label>
+          <input type="text" class="form-control" id="entradaCalle" />
+        </div>
+        <div class="col-md-12">
+          <label for="entradaNumero" class="form-label">Numero:</label>
+          <input type="number" class="form-control" id="entradaNumero" />
+        </div>
+        <div class="col-md-12">
+          <label for="entradaColonia" class="form-label">Colonia:</label>
+          <input type="text" class="form-control" id="entradaColonia" />
+        </div>
+        <div class="col-md-12">
+          <label for="entradaCP" class="form-label">Codígo Postal:</label>
+          <input type="number" class="form-control" id="entradaCP" />
+        </div>
+        <div class="col-md-12">
+          <label for="entradaTelefono" class="form-label">Telefono:</label>
+          <input type="tel" class="form-control" id="entradaTelefono" />
+        </div>
+        <div class="col-md-12">
+          <label class="form-check-label d-block"
+            >¿Se reconoce como indigena?</label
+          >
+          <div class="form-check-inline col-12 mt-1">
+            <input
+              type="radio"
+              class="btn-check"
+              name="opcionesIndigena"
+              id="indigenaSi"
+              autocomplete="off"
+              onchange="javascript:showContent()"
+            />
+            <label class="btn btn-outline-success" for="indigenaSi"
+              >Si</label
+            >
+            <input
+              type="radio"
+              class="btn-check"
+              name="opcionesIndigena"
+              id="indigenaNo"
+              autocomplete="off"
+              checked
+            />
+            <label class="btn btn-outline-success" for="indigenaNo"
+              >No</label
+            >
+          </div>
+        </div>
+        <div class="col-md-12 oculto" id="respuestaIndigena">
+            <label class="form-check-label d-block"
+              >¿Habla alguna lengua indigena?</label
+            >
+            <div class="form-check-inline col-12 mt-1">
+              <input
+                type="radio"
+                class="btn-check"
+                name="opcionesLenguaIndigena"
+                id="lenguaIndigenaSi"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-success" for="lenguaIndigenaSi"
+                >Si</label
+              >
+              <input
+                type="radio"
+                class="btn-check"
+                name="opcionesLenguaIndigena"
+                id="lenguaIndigenaNo"
+                autocomplete="off"
+                checked
+              />
+              <label class="btn btn-outline-success" for="lenguaIndigenaNo"
+                >No</label
+              >
+            </div>
+        </div>
+        <div class="col-md-12">
+          <label for="entradaApellidoPaterno" class="form-label"
+          >Ocupación:</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="entradaOcupacion"
+          placeholder="Ocupación"
+        />
+        </div>
+        <div class="col-md-12">
+          <label for="entradaFechaInicioSintomas" class="form-label"
+            >Fecha de inicio de sintomas:</label
+          >
+          <input
+            type="date"
+            class="form-control"
+            id="entradaFechaInicioSintomas"
+          />
+        </div>
+        <div>
+          <fieldset>
+            <legend>Sintomas</legend>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasFiebre"
+                    id="fiebreSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="fiebreSi">Si</label>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasFiebre"
+                    id="fiebreNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="fiebreNo">No</label>
+                </td>
+                <td>
+                  <label class="form-check-label">Fiebre</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasTos"
+                    id="tosSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="tosSi">Si</label>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasTos"
+                    id="tosNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="tosNo">No</label>
+                </td>
+                <td>
+                  <label class="form-check-label">Tos</label>
+                </td>
+              </tr> 
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasCefalea"
+                    id="cefaleaSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="cefaleaSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasCefalea"
+                    id="cefaleaNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="cefaleaNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Cefalea</label>
+                  <label class="form-check-label d-block"
+                    >(Dolor de cabeza)</label
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasDisnea"
+                    id="disneaSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="disneaSi">Si</label>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasDisnea"
+                    id="disneaNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="disneaNo">No</label>
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Disnea</label>
+                  <label class="form-check-label d-block"
+                    >(Dificultad para respirar)</label
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasIrritabilidad"
+                    id="irritabilidadSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="irritabilidadSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasIrritabilidad"
+                    id="irritabilidadNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="irritabilidadNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Irritabilidad</label>
+                </td>
+              </tr> 
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasDiarrea"
+                    id="dairreadSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="diarreaSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasDiarrea"
+                    id="diarreaNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="diarreaNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Diarrea</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasToracico"
+                    id="toracicoSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="disneaSi">Si</label>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasToracico"
+                    id="toracicoNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="disneaNo">No</label>
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Dolor toracico</label>
+                  <label class="form-check-label d-block">(Dolor de pecho)</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasEscalofrios"
+                    id="escalofriosSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="diarreaSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasEscalofrios"
+                    id="escalofriosNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="diarreaNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Escalofrios</label>
+                </td>
+              </tr> 
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasOdinofagia"
+                    id="odinofagiaSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="odinofagiaSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasOdinofagia"
+                    id="odinofagiaNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="odinofagiaNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Odinofagia</label>
+                  <label class="form-check-label d-block"
+                    >(Dolor de garganta)</label
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasMialgias"
+                    id="mialgiasSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="mialgiasSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasMialgias"
+                    id="mialgiasNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="mialgiasNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Mialgias</label>
+                  <label class="form-check-label d-block">(Dolor muscular)</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasArtralgias"
+                    id="artralgiasSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="artralgiasSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasArtralgias"
+                    id="artralgiasNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="artralgiasNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Artralgias</label>
+                  <label class="form-check-label d-block"
+                    >(Dolor articular)</label
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasGeneral"
+                    id="generalSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="generalSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasGeneral"
+                    id="generalNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="generalNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Malestar general</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasRinorrea"
+                    id="rinorreaSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="rinorreaSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasRinorrea"
+                    id="rinorreaNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="rinorreaNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Rinorrea</label>
+                  <label class="form-check-label d-block">(Catarro)</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasPolipnea"
+                    id="polipneaSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="polipneaSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasPolipnea"
+                    id="polipneaNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="polipneaNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Polipnea</label>
+                  <label class="form-check-label d-block"
+                    >(Respiración acelerada)</label
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasVomito"
+                    id="vomitoSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="vomitoSi">Si</label>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasVomito"
+                    id="vomitoNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="vomitoNo">No</label>
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Vomito</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasAabdominal"
+                    id="abdominalSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="abdominalSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasAbdominal"
+                    id="abdominalNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="abdominalNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Dolor abdominal</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasConjuntivitis"
+                    id="conjuntivitisSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="conjuntivitisSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasConjuntivitis"
+                    id="conjuntivitisNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="conjuntivitisNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Conjuntivitis</label>
+                  <label class="form-check-label d-block"
+                    >(Infección en ojos)</label
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasCianosis"
+                    id="cianosisSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="cianosisSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasCianosis"
+                    id="cianosisNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="cianosisNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Cianosis</label>
+                  <label class="form-check-label d-block"
+                    >(Coloración azul en la piel)</label
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasAosmia"
+                    id="aosmiaSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="aosmiaSi">Si</label>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasAosmia"
+                    id="aosmiaNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="aosmiaNo">No</label>
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Anosmia</label>
+                  <label class="form-check-label d-block"
+                    >(Perdida del olfato)</label
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasDisgeusia"
+                    id="disgeusiaSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="disgeusiaSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasDisgeusia"
+                    id="disgeusiaNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="disgeusiaNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Disgeusia</label>
+                  <label class="form-check-label d-block"
+                    >(Perdida del gusto)</label
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasDiabetes"
+                    id="diabetesSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="diabetesSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasDiabetes"
+                    id="diabetesNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="diabetesNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Diabetes</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasEpoc"
+                    id="epocSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="epocSi">Si</label>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasEpoc"
+                    id="epocNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="epocNo">No</label>
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Epoc</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasAsma"
+                    id="asmaSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="asmaSi">Si</label>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasAsma"
+                    id="asmaNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="asmaNo">No</label>
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Asma</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasInmunosupresión"
+                    id="inmunosupresiónSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="inmunosupresiónSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasInmunosupresión"
+                    id="inmunosupresiónNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="inmunosupresiónNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Inmunosupresión</label>
+                  <label class="form-check-label d-block">(Defensas bajas)</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasHipertensión"
+                    id="hipertensiónSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="hipertensiónSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasHipertensión"
+                    id="hipertensiónNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="hipertensiónNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Hipertensión</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasVIH/SIDA"
+                    id="VIH/SIDASi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="VIH/SIDASi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasVIH/SIDA"
+                    id="VIH/SIDANo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="VIH/SIDANo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">VIH/SIDA</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasCardiovascular"
+                    id="cardiovascularSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="cardiovascularSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasCardiovascular"
+                    id="cardiovascularNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="cardiovascularNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block"
+                    >Enfermedad cardiovascular</label
+                  >
+                  <label class="form-check-label d-block"
+                    >(Enfermedad del corazón)</label
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasObesidad"
+                    id="obesidadSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="obesidadSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasObesidad"
+                    id="obesidadNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="obesidadNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Obesidad</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasInsuficiencia"
+                    id="insuficienciaSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="insuficienciaSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasInsuficiencia"
+                    id="insuficienciaNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="insuficienciaNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block"
+                    >Insuficiencia renal crónica</label
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasTabaquismo"
+                    id="tabaquismoSi"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="tabaquismoSi"
+                    >Si</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="opcionesSintomasTabaquismo"
+                    id="tabaquismoNo"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="tabaquismoNo"
+                    >No</label
+                  >
+                </td>
+                <td>
+                  <label class="form-check-label d-block">Tabaquismo</label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          </fieldset>
+        </div>
+        <div class="col-md-12">
+          <fieldset>
+            <legend>Covid 1<sup>a</sup> dosis</legend>
+            <input type="date" class="form-control" id="entradaFechaPrimera" />
+          <label for="entradaBiologicoPrimera" class="form-label"
+          >Biologico</label>
+          <select id="inputBiologicoPrimera" class="form-select">
+            <option selected>Seleccionar...</option>
+            <option value="AstraZeneca">AstraZeneca</option>
+            <option value="Cansino">Cansino</option>
+            <option value="Covaxin">Covaxin</option>
+            <option value="Johnson & Johnson">Johnson & Johnson</option>
+            <option value="Moderna">Moderna</option>
+            <option value="Patria">Patria</option>
+            <option value="Pfizer/BioNTech">Pfizer/BioNTech</option>
+            <option value="Sputnik V">Sputnik V</option>
+            <option value="Sinuvac">Sinuvac</option>
+          </select>
+          </fieldset>
+        </div>
+        <div class="col-md-12">
+          <fieldset>
+            <legend>Covid 2<sup>a</sup> dosis</legend>
+            <input type="date" class="form-control" id="entradaFechaSegunda" />
+          <label for="entradaBiologicoSegunda" class="form-label"
+          >Biologico</label>
+          <select id="inputBiologicoSegunda" class="form-select">
+            <option selected>Seleccionar...</option>
+            <option value="AstraZeneca">AstraZeneca</option>
+            <option value="Cansino">Cansino</option>
+            <option value="Covaxin">Covaxin</option>
+            <option value="Johnson & Johnson">Johnson & Johnson</option>
+            <option value="Moderna">Moderna</option>
+            <option value="Patria">Patria</option>
+            <option value="Pfizer/BioNTech">Pfizer/BioNTech</option>
+            <option value="Sputnik V">Sputnik V</option>
+            <option value="Sinuvac">Sinuvac</option>
+          </select>
+          </fieldset>
+        </div>
+        <div class="col-md-12">
+          <fieldset>
+            <legend>Covid 2<sup>a</sup> dosis</legend>
+            <input type="date" class="form-control" id="entradaFechaTercera" />
+          <label for="entradaBiologicoTercera" class="form-label"
+          >Biologico</label>
+          <select id="inputBiologicoTerceraa" class="form-select">
+            <option selected>Seleccionar...</option>
+            <option value="AstraZeneca">AstraZeneca</option>
+            <option value="Cansino">Cansino</option>
+            <option value="Covaxin">Covaxin</option>
+            <option value="Johnson & Johnson">Johnson & Johnson</option>
+            <option value="Moderna">Moderna</option>
+            <option value="Patria">Patria</option>
+            <option value="Pfizer/BioNTech">Pfizer/BioNTech</option>
+            <option value="Sputnik V">Sputnik V</option>
+            <option value="Sinuvac">Sinuvac</option>
+          </select>
+          </fieldset>
+        </div>
+        
+        
+        <!-- <div class="col-md-6">
+              <label for="inputCity" class="form-label">City</label>
+              <input type="text" class="form-control" id="inputCity">
+            </div>
+            <div class="col-md-4">
+              <label for="inputState" class="form-label">State</label>
+              <select id="inputState" class="form-select">
+                <option selected>Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <label for="inputZip" class="form-label">Zip</label>
+              <input type="text" class="form-control" id="inputZip">
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                  Check me out
+                </label>
+              </div>
+            </div> -->
+        <div class="col-12 mt-1">
+          <button type="submit" class="btn btn-success">Guardar</button>
+          <button type="submit" class="btn btn-danger">Cancelar</button>
+        </div>
+      </form>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container d-flex justify-content-center"">
+          <span class="text-muted">Servicios de Salud de San Luis Potosí, Prolongación Calzada de Guadalupe #5850<br> Lomas de la virgen, C.P. 78380 | Tel: (444)8-34-11-00.</span>
+        </div>
+      </footer>
+  </body>
+  <script src="./assets/js/covid.js"></script>
+</html>
