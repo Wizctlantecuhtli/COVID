@@ -33,6 +33,10 @@ window.onload = function(){
 
     respuestaIndigena = document.getElementById("respuestaIndigena");
     indigena = document.getElementById("indigenaSi");
+
+    respuestaSintomas = document.getElementById("respuestaSintomas");
+    sintomas = document.getElementById("sintomasSi");
+
     if (sexoMujer.checked) {
         respuestaMujer.style.display='block';
     }
@@ -83,6 +87,12 @@ window.onload = function(){
     }
     else {
         respuestaIndigena.style.display='none';
+    }
+    if (sintomas.checked) {
+        respuestaSintomas.style.display='block';
+    }
+    else {
+        respuestaSintomas.style.display='none';
     }
 }
 function Edad(FechaNacimiento) {

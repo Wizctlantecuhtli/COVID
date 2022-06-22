@@ -446,7 +446,38 @@
           placeholder="Ocupación"
         />
         </div>
-        <div class="col-md-12">
+        <fieldset>
+          <legend>Sintomas</legend>
+          <div class="col-md-12 ">
+            <label class="form-check-label d-block"
+              >¿Ha presentado algún sintoma en las semanas anteriores?</label
+            >
+            <div class="form-check-inline col-12 mt-1">
+              <input
+                type="radio"
+                class="btn-check"
+                name="opcionesSintomas"
+                id="sintomasSi"
+                autocomplete="off"
+                onchange="javascript:showContent()"
+              />
+              <label class="btn btn-outline-success" for="sintomasSi"
+                >Si</label
+              >
+              <input
+                type="radio"
+                class="btn-check"
+                name="opcionesSintomas"
+                id="sintomasNo"
+                autocomplete="off"
+                checked
+              />
+              <label class="btn btn-outline-success" for="sintomasNo"
+                >No</label
+              >
+            </div>
+        </div>
+        <div  class="col-md-12 oculto" id="respuestaSintomas">
           <label for="entradaFechaInicioSintomas" class="form-label"
             >Fecha de inicio de sintomas:</label
           >
@@ -455,13 +486,9 @@
             class="form-control"
             id="entradaFechaInicioSintomas"
           />
-        </div>
-        <div>
-          <fieldset>
-            <legend>Sintomas</legend>
           <table>
             <tbody>
-              <tr>
+              <tr ">
                 <td>
                   <input
                     type="radio"
@@ -482,7 +509,7 @@
                   <label class="btn btn-outline-success" for="fiebreNo">No</label>
                 </td>
                 <td>
-                  <label class="form-check-label">Fiebre</label>
+                  <label class="form-check-label">Fiebre.</label>
                 </td>
               </tr>
               <tr>
@@ -506,7 +533,7 @@
                   <label class="btn btn-outline-success" for="tosNo">No</label>
                 </td>
                 <td>
-                  <label class="form-check-label">Tos</label>
+                  <label class="form-check-label">Tos.</label>
                 </td>
               </tr> 
               <tr>
@@ -536,7 +563,7 @@
                 <td>
                   <label class="form-check-label d-block">Cefalea</label>
                   <label class="form-check-label d-block"
-                    >(Dolor de cabeza)</label
+                    >(Dolor de cabeza).</label
                   >
                 </td>
               </tr>
@@ -563,7 +590,7 @@
                 <td>
                   <label class="form-check-label d-block">Disnea</label>
                   <label class="form-check-label d-block"
-                    >(Dificultad para respirar)</label
+                    >(Dificultad para respirar).</label
                   >
                 </td>
               </tr>
@@ -592,7 +619,7 @@
                   >
                 </td>
                 <td>
-                  <label class="form-check-label d-block">Irritabilidad</label>
+                  <label class="form-check-label d-block">Irritabilidad.</label>
                 </td>
               </tr> 
               <tr>
@@ -620,7 +647,7 @@
                   >
                 </td>
                 <td>
-                  <label class="form-check-label d-block">Diarrea</label>
+                  <label class="form-check-label d-block">Diarrea.</label>
                 </td>
               </tr>
               <tr>
@@ -645,7 +672,7 @@
                 </td>
                 <td>
                   <label class="form-check-label d-block">Dolor toracico</label>
-                  <label class="form-check-label d-block">(Dolor de pecho)</label>
+                  <label class="form-check-label d-block">(Dolor de pecho).</label>
                 </td>
               </tr>
               <tr>
@@ -673,7 +700,7 @@
                   >
                 </td>
                 <td>
-                  <label class="form-check-label d-block">Escalofrios</label>
+                  <label class="form-check-label d-block">Escalofrios.</label>
                 </td>
               </tr> 
               <tr>
@@ -703,7 +730,7 @@
                 <td>
                   <label class="form-check-label d-block">Odinofagia</label>
                   <label class="form-check-label d-block"
-                    >(Dolor de garganta)</label
+                    >(Dolor de garganta).</label
                   >
                 </td>
               </tr>
@@ -733,7 +760,7 @@
                 </td>
                 <td>
                   <label class="form-check-label d-block">Mialgias</label>
-                  <label class="form-check-label d-block">(Dolor muscular)</label>
+                  <label class="form-check-label d-block">(Dolor muscular).</label>
                 </td>
               </tr>
               <tr>
@@ -763,7 +790,7 @@
                 <td>
                   <label class="form-check-label d-block">Artralgias</label>
                   <label class="form-check-label d-block"
-                    >(Dolor articular)</label
+                    >(Dolor articular).</label
                   >
                 </td>
               </tr>
@@ -792,7 +819,7 @@
                   >
                 </td>
                 <td>
-                  <label class="form-check-label d-block">Malestar general</label>
+                  <label class="form-check-label d-block">Malestar general.</label>
                 </td>
               </tr>
               <tr>
@@ -821,7 +848,7 @@
                 </td>
                 <td>
                   <label class="form-check-label d-block">Rinorrea</label>
-                  <label class="form-check-label d-block">(Catarro)</label>
+                  <label class="form-check-label d-block">(Catarro).</label>
                 </td>
               </tr>
               <tr>
@@ -851,7 +878,7 @@
                 <td>
                   <label class="form-check-label d-block">Polipnea</label>
                   <label class="form-check-label d-block"
-                    >(Respiración acelerada)</label
+                    >(Respiración acelerada).</label
                   >
                 </td>
               </tr>
@@ -876,7 +903,7 @@
                   <label class="btn btn-outline-success" for="vomitoNo">No</label>
                 </td>
                 <td>
-                  <label class="form-check-label d-block">Vomito</label>
+                  <label class="form-check-label d-block">Vomito.</label>
                 </td>
               </tr>
               <tr>
@@ -904,7 +931,7 @@
                   >
                 </td>
                 <td>
-                  <label class="form-check-label d-block">Dolor abdominal</label>
+                  <label class="form-check-label d-block">Dolor abdominal.</label>
                 </td>
               </tr>
               <tr>
@@ -934,7 +961,7 @@
                 <td>
                   <label class="form-check-label d-block">Conjuntivitis</label>
                   <label class="form-check-label d-block"
-                    >(Infección en ojos)</label
+                    >(Infección en ojos).</label
                   >
                 </td>
               </tr>
@@ -965,7 +992,7 @@
                 <td>
                   <label class="form-check-label d-block">Cianosis</label>
                   <label class="form-check-label d-block"
-                    >(Coloración azul en la piel)</label
+                    >(Coloración azul en la piel).</label
                   >
                 </td>
               </tr>
@@ -992,7 +1019,7 @@
                 <td>
                   <label class="form-check-label d-block">Anosmia</label>
                   <label class="form-check-label d-block"
-                    >(Perdida del olfato)</label
+                    >(Perdida del olfato).</label
                   >
                 </td>
               </tr>
@@ -1023,7 +1050,7 @@
                 <td>
                   <label class="form-check-label d-block">Disgeusia</label>
                   <label class="form-check-label d-block"
-                    >(Perdida del gusto)</label
+                    >(Perdida del gusto).</label
                   >
                 </td>
               </tr>
@@ -1052,7 +1079,7 @@
                   >
                 </td>
                 <td>
-                  <label class="form-check-label d-block">Diabetes</label>
+                  <label class="form-check-label d-block">Diabetes.</label>
                 </td>
               </tr>
               <tr>
@@ -1076,7 +1103,7 @@
                   <label class="btn btn-outline-success" for="epocNo">No</label>
                 </td>
                 <td>
-                  <label class="form-check-label d-block">Epoc</label>
+                  <label class="form-check-label d-block">Epoc.</label>
                 </td>
               </tr>
               <tr>
@@ -1100,7 +1127,7 @@
                   <label class="btn btn-outline-success" for="asmaNo">No</label>
                 </td>
                 <td>
-                  <label class="form-check-label d-block">Asma</label>
+                  <label class="form-check-label d-block">Asma.</label>
                 </td>
               </tr>
               <tr>
@@ -1129,7 +1156,7 @@
                 </td>
                 <td>
                   <label class="form-check-label d-block">Inmunosupresión</label>
-                  <label class="form-check-label d-block">(Defensas bajas)</label>
+                  <label class="form-check-label d-block">(Defensas bajas).</label>
                 </td>
               </tr>
               <tr>
@@ -1157,7 +1184,7 @@
                   >
                 </td>
                 <td>
-                  <label class="form-check-label d-block">Hipertensión</label>
+                  <label class="form-check-label d-block">Hipertensión.</label>
                 </td>
               </tr>
               <tr>
@@ -1185,7 +1212,7 @@
                   >
                 </td>
                 <td>
-                  <label class="form-check-label d-block">VIH/SIDA</label>
+                  <label class="form-check-label d-block">VIH/SIDA.</label>
                 </td>
               </tr>
               <tr>
@@ -1217,7 +1244,7 @@
                     >Enfermedad cardiovascular</label
                   >
                   <label class="form-check-label d-block"
-                    >(Enfermedad del corazón)</label
+                    >(Enfermedad del corazón).</label
                   >
                 </td>
               </tr>
@@ -1246,7 +1273,7 @@
                   >
                 </td>
                 <td>
-                  <label class="form-check-label d-block">Obesidad</label>
+                  <label class="form-check-label d-block">Obesidad.</label>
                 </td>
               </tr>
               <tr>
@@ -1275,7 +1302,7 @@
                 </td>
                 <td>
                   <label class="form-check-label d-block"
-                    >Insuficiencia renal crónica</label
+                    >Insuficiencia renal crónica.</label
                   >
                 </td>
               </tr>
@@ -1304,13 +1331,14 @@
                   >
                 </td>
                 <td>
-                  <label class="form-check-label d-block">Tabaquismo</label>
+                  <label class="form-check-label d-block">Tabaquismo.</label>
                 </td>
               </tr>
             </tbody>
           </table>
-          </fieldset>
+          
         </div>
+      </fieldset>
         <div class="col-md-12">
           <fieldset>
             <legend>Covid 1<sup>a</sup> dosis</legend>
