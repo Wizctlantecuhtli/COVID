@@ -11,3 +11,7 @@ td {
     border-color: #B7D93D !important;
     box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25) !important;
 } 
+.form-select:focus {
+    border-color: #B7D93D !important;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25) !important;
+} 
